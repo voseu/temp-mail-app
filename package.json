@@ -3,12 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "build:cpanel": "node build-cpanel.js"
   },
   "dependencies": {
+    "@clerk/mcp-tools": "^0.5.0",
+    "@clerk/nextjs": "^7.2.8",
+    "@opennextjs/cloudflare": "^1.19.4",
+    "@supabase/supabase-js": "^2.103.0",
+    "mcp-handler": "^1.1.0",
     "next": "16.2.3",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -21,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.85.0"
   }
 }

@@ -39,3 +39,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
+
+# clerk configuration (can include secrets)
+/.clerk/
+
+# cpanel build output
+/upload-cpanel/
+
+# worker
+/worker/node_modules/
+/worker/.wrangler/
+/worker/worker-configuration.d.ts
