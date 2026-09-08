@@ -1,45 +1,44 @@
-# Temp Mail Catcher — Cloudflare Email Worker
+# Cloudflare Email Catcher (Worker)
 
-Cloudflare Worker yang menerima email masuk via **Email Routing**, 
-mem-parse isinya menggunakan `postal-mime`, lalu menyimpannya ke **Supabase**.
+Bagian dari Monorepo **Temp Mail App** oleh [voseu](https://github.com/voseu).
 
-## Cara Kerja
+Ini adalah skrip **Cloudflare Worker** yang berdiri di garis depan untuk menangkap lalu lintas email masuk via fitur **Email Routing**. Skrip ini menggunakan *library* `postal-mime` untuk mengubah pesan mentah (*raw MIME*) menjadi objek JSON yang mudah dibaca, lalu melemparkannya ke **Supabase**.
 
-1. Cloudflare Email Routing menangkap semua email ke `*@whise.fun`
-2. Email diteruskan ke worker ini via `email()` handler
-3. Worker mem-parse: subject, body (text + HTML), CC, Reply-To, headers, attachments
-4. Email dikategorikan otomatis (OTP, Notification, Newsletter, Spam, Other)
-5. Data di-INSERT ke tabel `incoming_emails` di Supabase via REST API
+## Alur Singkat
 
-## Setup
+1. Email masuk ke alamat *@domainkamu.com*.
+2. Cloudflare Routing mengarahkannya ke fungsi `email()` pada Worker ini.
+3. Skrip membedah lampiran (attachments), *headers*, isi pesan, dan subjek.
+4. Terdapat algoritma sederhana untuk mengenali email OTP, Notifikasi, atau Spam.
+5. Email disimpan dengan bersih ke tabel database.
 
+## Instalasi Dependensi
+
+Pastikan Anda berada di direktori `worker/`, lalu jalankan:
 ```bash
 npm install
 ```
 
-### Set Secret
+## Konfigurasi Kunci Rahasia
+
+Penyisipan ke Supabase menggunakan REST API dan membutuhkan hak istimewa *Service Role*. Kunci ini sangat rahasia, jangan menaruhnya di dalam kode. Setel menggunakan antarmuka Wrangler:
 
 ```bash
 npx wrangler secret put SUPABASE_SERVICE_KEY
-# Paste service_role key dari Supabase Dashboard → Settings → API
 ```
+*(Tempelkan `service_role key` dari Supabase saat diminta)*
 
-`SUPABASE_URL` sudah dikonfigurasi di `wrangler.jsonc`.
+Pastikan juga variabel `SUPABASE_URL` di dalam file `wrangler.jsonc` sudah diganti dengan URL *Project* Supabase Anda yang sesungguhnya.
 
-## Development
+## Perintah Development & Deploy
 
+Uji coba Worker:
 ```bash
 npm run dev
 ```
 
-## Deploy
-
+Deploy Worker ke jaringan Cloudflare:
 ```bash
-npm run deploy
+npx wrangler deploy
 ```
-
-## Test
-
-```bash
-npm test
-```
+*(Jangan lupa kaitkan Worker yang berhasil di-deploy ke Email Routing Catch-all di Cloudflare Dashboard)*
