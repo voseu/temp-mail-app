@@ -1,9 +1,7 @@
-# Temp Mail App — Disposable Email Service
+# Temp Mail App - Disposable Email Service
 
 > **Layanan email sekali pakai instan** berbasis Next.js dan Cloudflare Workers.  
 > Solusi cepat untuk menerima OTP, verifikasi akun, atau bypass paywall tanpa memaparkan email utama Anda.
-
-Oleh: [voseu](https://github.com/voseu)
 
 ## Arsitektur
 
@@ -217,19 +215,19 @@ Ini adalah metode *deploy* yang sangat disarankan karena Next.js di-render via E
 
 ## Fitur Utama
 
-### 👥 Fitur Publik (Tanpa Login)
-- ✅ Membuat alamat kustom `[namamu]@domainkamu.com`.
-- ✅ *Inbox Real-time* (Email muncul seketika saat dikirim).
-- ✅ Kategorisasi cerdas otomatis (OTP, Newsletter, Spam, dll).
-- ✅ Ekstraksi kode OTP agar mudah disalin.
-- ✅ Membaca isi pesan Text & HTML secara aman.
-- ✅ Salin (*Copy*) alamat email ke *clipboard* dengan sekali klik.
+### Fitur Publik (Tanpa Login)
+- Membuat alamat kustom `[namamu]@domainkamu.com`.
+- *Inbox Real-time* (Email muncul seketika saat dikirim).
+- Kategorisasi cerdas otomatis (OTP, Newsletter, Spam, dll).
+- Ekstraksi kode OTP agar mudah disalin.
+- Membaca isi pesan Text & HTML secara aman.
+- Salin (*Copy*) alamat email ke *clipboard* dengan sekali klik.
 
-### 👑 Fitur Admin (via Clerk Auth)
-- 🔐 *Generate* email *disposable* terkoneksi identitas rahasia.
-- 🔐 Pencatatan riwayat email buatan admin secara lokal & database.
-- 🔐 Ekspor seluruh riwayat alamat *disposable* ke file CSV.
-- 🔐 Proteksi penghapusan otomatis untuk email VIP admin.
+### Fitur Admin (via Clerk Auth)
+- *Generate* email *disposable* terkoneksi identitas rahasia.
+- Pencatatan riwayat email buatan admin secara lokal & database.
+- Ekspor seluruh riwayat alamat *disposable* ke file CSV.
+- Proteksi penghapusan otomatis untuk email VIP admin.
 
 ---
 
